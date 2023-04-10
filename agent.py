@@ -30,24 +30,25 @@ class Agent(parl.Agent):
         self.e_greed_decrement = e_greed_decrement  
 
 
+    
     def build_program(self):
         self.pred_program = fluid.Program()
         self.learn_program = fluid.Program()
 
         with fluid.program_guard(self.pred_program):  # to predict actions
-            obs = layers.data(
-                name='obs', shape=[self.obs_dim], dtype='float32')
+            #obs = layers.data(
+            #    name='obs', shape=[self.obs_dim], dtype='float32')
             # set obs as data variable
             self.value = self.alg.predict(obs)
 
         with fluid.program_guard(self.learn_program):  # to update Q network
-            obs = layers.data(
-                name='obs', shape=[self.obs_dim], dtype='float32')
-            action = layers.data(name='act', shape=[2], dtype='int32')
-            reward = layers.data(name='reward', shape=[], dtype='float32')
-            next_obs = layers.data(
-                name='next_obs', shape=[self.obs_dim], dtype='float32')
-            terminal = layers.data(name='terminal', shape=[], dtype='bool')
+            #obs = layers.data(
+            #    name='obs', shape=[self.obs_dim], dtype='float32')
+            #action = layers.data(name='act', shape=[2], dtype='int32')
+            #reward = layers.data(name='reward', shape=[], dtype='float32')
+            #next_obs = layers.data(
+            #    name='next_obs', shape=[self.obs_dim], dtype='float32')
+            #terminal = layers.data(name='terminal', shape=[], dtype='bool')
             self.cost = self.alg.learn(obs, action, reward, next_obs, terminal)
 
     def sample(self, obs):

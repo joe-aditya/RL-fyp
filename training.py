@@ -11,10 +11,10 @@ import parl
 from parl.utils import logger  
 import logging
 
+from model import Model
 from algorithm import DQN  # from parl.algorithms import DQN  # parl >= 1.3.1
 from agent import Agent
 from env import Env
-from model import Model
 
 from replay_memory import ReplayMemory
 
